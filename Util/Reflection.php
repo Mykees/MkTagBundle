@@ -25,13 +25,13 @@ class Reflection {
         return $reflection->getShortName();
     }
 
-    public static function getBundlePath ( TermAssociateInterface $termAssociate ){
-        $explode = explode('\\', self::getClassName($termAssociate));
+    public static function getBundlePath ( $model  ){
+        $explode = explode('\\', self::getClassName($model ));
         return $explode[0].'\\'.$explode[1].'\\'.$explode[2].'\\'.$explode[3];
     }
 
-    public static function getBundleRepository ( TermAssociateInterface $termAssociate ){
-        $explode = explode('\\', self::getClassName($termAssociate));
+    public static function getBundleRepository ( $model  ){
+        $explode = explode('\\', self::getClassName($model ));
         return $explode[0].$explode[1].':'.$explode[3];
     }
 
