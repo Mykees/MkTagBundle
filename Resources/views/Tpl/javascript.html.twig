@@ -1,0 +1,10 @@
+<script>
+    jQuery(function($){
+        $('.delTag').on('click',function(e){
+            e.preventDefault();
+            var a = $(this);
+            $.get(a.attr('href'));
+            a.parent().fadeOut();
+        });
+    });
+</script>
