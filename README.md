@@ -42,6 +42,12 @@ The goal of this bundle is to allow you to associate tags with several entities.
 	    prefix:   /admin
 	```
 
+5. Update your database:
+
+	```
+	php app/console doctrine:schema:update --force
+	```
+
 
 ##Setup
 
