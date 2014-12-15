@@ -1,8 +1,8 @@
 {
-    "name": "Mykees/Symfony2-TagBundle",
+    "name": "mykees/symfony2-tagbundle",
     "type": "symfony-bundle",
     "description": "Symfony Tag Bundle",
-    "keywords": ["Symfony Tag bundle", "tag"],
+    "keywords": ["symfony tag bundle", "tag"],
     "authors": [
         {
             "name": "Rafidison Michaël",
