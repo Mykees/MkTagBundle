@@ -13,10 +13,16 @@
         "liip/functional-test-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
+    "autoload": {
+        "psr-0": {
+            "Mykees\\TagBundle": ""
+        }
+    },
     "require": {
         "php": ">=5.4",
         "symfony/framework-bundle":         "~2.3",
         "twig/twig":                        "*",
         "doctrine/doctrine-bundle":         "*"
-    }
+    },
+    "target-dir" : "Mykees/TagBundle"
 }
