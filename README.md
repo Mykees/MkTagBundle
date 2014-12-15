@@ -203,7 +203,7 @@ Don't forget to add attribute class **deltTag** on your link.
 
 ##Testing
 
-If you want to add or modify some functionnality, you can test them in `Tests/Controller/MediaControllerTest.php`.
+If you want to add or modify some functionnality, you can test them in `Tests/Controller/TagsControllerTest.php`.
 
 Enjoy ;)
 
