@@ -184,7 +184,7 @@ Make sure that your main layout contain `block javascripts` with **jquery** like
 {% endblock %}
 ```
 
-3. Now you can delete your tags by adding a link to the delete action like the following example:
+3. Now you can delete the tags by adding a link to the delete action like the following example:
 
 	```twig
 	{% for tag in post.getTags %}
@@ -202,6 +202,43 @@ Make sure that your main layout contain `block javascripts` with **jquery** like
     {% endfor %}
 	```
 Don't forget to add attribute class **deltTag** on your link.
+
+
+
+
+##Useful functions
+
+1. Save relation
+	
+	```php
+	$this->tag->saveRelation(Taggable $model)
+	```
+
+2. Delete relation
+	
+	```php
+	$this->tag->deleteTagRelation(Taggable $model)
+	```
+
+3. find tags associated with an entity
+
+	```php
+	$this->tag->findTagRelation($model)
+	```
+
+4. find tags by name
+
+	```php
+	$this->tag->findTagsByName($names)
+	```
+
+5. find entity ids associated to tags
+
+	```php
+	$this->tag->findReferer( $slug_tag, $model_type=null )
+	```
+
+
 
 ##Testing
 
