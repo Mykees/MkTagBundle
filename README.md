@@ -27,7 +27,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
 
 	```php
 	$bundles = array(
-            new Mykees\MediaBundle\MykeesMediaBundle(),
+            new Mykees\TagBundle\MykeesTagBundle(),
         );
 	```
 
