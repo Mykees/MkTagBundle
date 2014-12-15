@@ -35,8 +35,6 @@ public function registerBundles()
 }
 
 
-
-
 ##Requirement
 
 - Php : ">= 5.4"
