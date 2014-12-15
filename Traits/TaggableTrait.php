@@ -14,6 +14,8 @@ use Mykees\TagBundle\Util\Reflection;
 
 trait TaggableTrait {
 
+    public $tags;
+
     public function getModel(){
         return Reflection::getClassShortName($this);
     }
