@@ -23,7 +23,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
 	$ php composer.phar require mykees/symfony2-tagbundle
 	```
 
-3. Add this bundle to your application's kernel for the test environment:
+3. Add this bundle to your application's kernel :
 
 	```php
 	$bundles = array(
