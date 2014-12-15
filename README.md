@@ -127,7 +127,7 @@ class AdminController extends Controller
 }
 ```
 
-In your controller actions, to get all tags associated with your entity, you can use **findTagRelation()** function from the tagManager :
+In your controller actions, to get all tags associated with your entity, you can use **findTagRelation()** function of the tagManager :
 
 ```php
 public function indexAction()
@@ -152,7 +152,7 @@ And in your template you can display the tags like that:
 
 For more comfort, removing tags uses **ajax**.
 
-1. In your edit action in your controller, get all tags associate with your entity like that:
+1. In your edit action in your controller, get all tags associated with your entity like that:
 
 	```php
 
@@ -180,7 +180,7 @@ For more comfort, removing tags uses **ajax**.
 	{% endblock %}
 	```
 
-Make sure your main layout contain `block javascripts` with **jquery** like that:
+Make sure that your main layout contain `block javascripts` with **jquery** like that:
 
 ```twig
 {% block javascripts %}
@@ -188,7 +188,7 @@ Make sure your main layout contain `block javascripts` with **jquery** like that
 {% endblock %}
 ```
 
-3. Now you can delete you tags by adding a link to the delete action like the following example:
+3. Now you can delete your tags by adding a link to the delete action like the following example:
 
 	```twig
 	{% for tag in post.getTags %}
