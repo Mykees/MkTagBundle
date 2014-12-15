@@ -211,31 +211,31 @@ Don't forget to add attribute class **deltTag** on your link.
 1. Save relation
 	
 	```php
-	$this->tag->saveRelation(Taggable $model)
+	$this->tagManager()->saveRelation(Taggable $model)
 	```
 
 2. Delete relation
 	
 	```php
-	$this->tag->deleteTagRelation(Taggable $model)
+	$this->tagManager()->deleteTagRelation(Taggable $model)
 	```
 
 3. find tags associated with an entity
 
 	```php
-	$this->tag->findTagRelation($model)
+	$this->tagManager()->findTagRelation($model)
 	```
 
 4. find tags by name
 
 	```php
-	$this->tag->findTagsByName($names)
+	$this->tagManager()->findTagsByName($names)
 	```
 
 5. find entity ids associated to tags
 
 	```php
-	$this->tag->findReferer( $slug_tag, $model_type=null )
+	$this->tagManager()->findReferer( $slug_tag, $model_type=null )
 	```
 
 
