@@ -1,0 +1,22 @@
+{
+    "name": "Mykees/Symfony2-TagBundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Tag Bundle",
+    "keywords": ["Symfony Tag bundle", "tag"],
+    "authors": [
+        {
+            "name": "Rafidison Michaël",
+            "email": "rafidisonmichael@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "liip/functional-test-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
+    },
+    "require": {
+        "php": ">=5.4",
+        "symfony/framework-bundle":         "~2.3",
+        "twig/twig":                        "*",
+        "doctrine/doctrine-bundle":         "*"
+    }
+}
