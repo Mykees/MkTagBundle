@@ -11,31 +11,31 @@ The goal of this bundle is to allow you to associate tags with several entities.
 
 1. Add package to `require` in `composer.json`:
 
-```json
-"require": {
-    "mykees/symfony2-tagbundle": "dev-master"
-}
-```
+	```json
+	"require": {
+	    "mykees/symfony2-tagbundle": "dev-master"
+	}
+	```
 
 2. Install package:
 
-```
-$ php composer.phar require mykees/symfony2-tagbundle
-```
+	```
+	$ php composer.phar require mykees/symfony2-tagbundle
+	```
 
 3. Add this bundle to your application's kernel for the test environment:
 
-```php
-public function registerBundles()
-{
-    // ...
-    if (in_array($this->getEnvironment(), array('test'))) {
-        $bundles[] = new Mykees\MediaBundle\MykeesMediaBundle();
-    }
+	```php
+	public function registerBundles()
+	{
+	    // ...
+	    if (in_array($this->getEnvironment(), array('test'))) {
+	        $bundles[] = new Mykees\MediaBundle\MykeesMediaBundle();
+	    }
 
-    return $bundles;
-}
-```
+	    return $bundles;
+	}
+	```
 
 ##Requirement
 
