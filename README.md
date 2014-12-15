@@ -26,15 +26,9 @@ The goal of this bundle is to allow you to associate tags with several entities.
 3. Add this bundle to your application's kernel for the test environment:
 
 	```php
-	public function registerBundles()
-	{
-	    // ...
-	    if (in_array($this->getEnvironment(), array('test'))) {
-	        $bundles[] = new Mykees\MediaBundle\MykeesMediaBundle();
-	    }
-
-	    return $bundles;
-	}
+	$bundles = array(
+            new Mykees\MediaBundle\MykeesMediaBundle(),
+        );
 	```
 
 ##Requirement
