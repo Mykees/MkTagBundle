@@ -33,10 +33,6 @@ The goal of this bundle is to allow you to associate tags with several entities.
 4. Add routing in your `app/config/routing.yml`:
 
 	```yml
-	mykees_tag:
-	    resource: "@MykeesTagBundle/Resources/config/routing.yml"
-	    prefix:   /
-
 	mykees_tag_admin:
 		resource: "@MykeesTagBundle/Resources/config/routing_admin.yml"
 	    prefix:   /admin
