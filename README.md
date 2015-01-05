@@ -12,7 +12,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
 
 	```json
 	"require": {
-	    "mykees/symfony2-tagbundle": "dev-master"
+	    "mykees/symfony2-tag-bundle": "dev-master"
 	}
 	```
 
