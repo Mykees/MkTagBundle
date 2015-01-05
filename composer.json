@@ -1,5 +1,5 @@
 {
-    "name": "mykees/symfony2-tagbundle",
+    "name": "mykees/symfony2-tag-bundle",
     "type": "symfony-bundle",
     "description": "Symfony Tag Bundle",
     "keywords": ["symfony tag bundle", "tag"],
