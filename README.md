@@ -15,9 +15,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
 	    "mykees/symfony2-tag-bundle": "dev-master"
 	}
 	```
-
 or
-
 	```
 	$ php composer.phar require mykees/symfony2-tagbundle
 	```
