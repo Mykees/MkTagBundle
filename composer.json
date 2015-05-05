@@ -24,5 +24,10 @@
         "twig/twig":                        "*",
         "doctrine/doctrine-bundle":         "*"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
     "target-dir" : "Mykees/TagBundle"
 }
