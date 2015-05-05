@@ -16,13 +16,13 @@ The goal of this bundle is to allow you to associate tags with several entities.
 	}
 	```
 
-2. Install package:
+or
 
 	```
 	$ php composer.phar require mykees/symfony2-tagbundle
 	```
 
-3. Add this bundle to your application's kernel :
+2. Add this bundle to your application's kernel :
 
 	```php
 	$bundles = array(
@@ -30,7 +30,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
         );
 	```
 
-4. Add routing in your `app/config/routing.yml`:
+3. Add routing in your `app/config/routing.yml`:
 
 	```yml
 	mykees_tag_admin:
@@ -38,7 +38,7 @@ The goal of this bundle is to allow you to associate tags with several entities.
 	    prefix:   /admin
 	```
 
-5. Update your database:
+4. Update your database:
 
 	```
 	php app/console doctrine:schema:update --force
