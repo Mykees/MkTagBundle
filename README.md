@@ -12,12 +12,12 @@ The goal of this bundle is to allow you to associate tags with several entities.
 
 	```json
 	"require": {
-	    "mykees/symfony2-tag-bundle": "dev-master"
+	    "mykees/symfony2-tag-bundle": "1.0.*@dev"
 	}
 	```
 or
 	```
-	$ php composer.phar require mykees/symfony2-tagbundle
+	$ php composer.phar require mykees/symfony2-tag-bundle "1.0.*@dev"
 	```
 
 2. Add this bundle to your application's kernel :
