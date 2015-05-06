@@ -20,7 +20,8 @@ trait ManagerArrayTrait {
      * @param array $models
      * @return mixed
      */
-    protected function getTagRelationArray( array $models ){
+    protected function getTagRelationArray( array $models )
+    {
         $model_info = $this->getModelInfos($models);
 
         $query = $this->em->createQueryBuilder()
@@ -35,6 +36,7 @@ trait ManagerArrayTrait {
             ->getQuery()
             ->getResult()
         ;
+
         return $this->refreshTagsArray($query,$models);
     }
 
@@ -43,12 +45,17 @@ trait ManagerArrayTrait {
      * @param array $tagRelations
      * @param array $models
      */
-    protected function refreshTagsArray(array $tagRelations, array $models){
+    protected function refreshTagsArray(array $tagRelations, array $models)
+    {
         $this->clean($models);
-        foreach($models as $model){
-            foreach($tagRelations as $tr){
-                if( $model instanceof Taggable && $tr->getTag() instanceof Tag ){
-                    if($model->getId() == $tr->getModelId() && $model->getModel() == $tr->getModel()){
+        foreach($models as $model)
+        {
+            foreach($tagRelations as $tr)
+            {
+                if( $model instanceof Taggable && $tr->getTag() instanceof Tag )
+                {
+                    if($model->getId() == $tr->getModelId() && $model->getModel() == $tr->getModel())
+                    {
                         $model->getTags()->add($tr->getTag());
                     }
                 }
@@ -61,17 +68,22 @@ trait ManagerArrayTrait {
      * @param array $datas
      * @return array
      */
-    protected function getModelInfos(array $datas){
+    protected function getModelInfos(array $datas)
+    {
         $ids = [];$models = [];$model_exist=false;
-        foreach( $datas as $k=>$data ){
-            if($data instanceof Taggable){
+        foreach( $datas as $k=>$data )
+        {
+            if($data instanceof Taggable)
+            {
                 array_push($ids,$data->getModelId());
-                if( $model_exist != $data->getModel() ){
+                if( $model_exist != $data->getModel() )
+                {
                     array_push($models,$data->getModel());
                     $model_exist = $data->getModel();
                 }
             }
         }
+
         return [ 'ids'=>$ids, 'models'=>$models ];
     }
 
@@ -79,8 +91,10 @@ trait ManagerArrayTrait {
      * Clean a collection
      * @param array $models
      */
-    protected function clean(array $models){
-        foreach($models as $model){
+    protected function clean(array $models)
+    {
+        foreach($models as $model)
+        {
             $model->getTags()->clear();
         }
     }

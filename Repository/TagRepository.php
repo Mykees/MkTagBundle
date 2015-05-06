@@ -12,7 +12,8 @@ use Doctrine\ORM\EntityRepository;
 
 class TagRepository extends EntityRepository {
 
-    public function findCount(){
+    public function findCount()
+    {
         return $this->_em->createQueryBuilder()
             ->select('count(t.id)')
             ->from('Mykees\TagBundle\Entity\Tag','t')

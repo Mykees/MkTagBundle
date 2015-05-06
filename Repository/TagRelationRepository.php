@@ -13,7 +13,8 @@ use Doctrine\ORM\EntityRepository;
 class TagRelationRepository extends EntityRepository {
 
 
-    public function findCount($tag_id=null){
+    public function findCount($tag_id=null)
+    {
 
         if($tag_id){
             return $this->_em->createQueryBuilder()

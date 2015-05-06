@@ -15,8 +15,8 @@ class TagsController extends Controller
         $this->manage()->remove($tagRelation);
         $this->manage()->flush();
         $tag_id = $tagRelation->getTag()->getId();
-        $manager = $this->container->get('mk.tag.manager');
-        $manager->uselessTag($tag_id);
+        $manager = $this->container->get('mk.tag_manager');
+        $manager->useless($tag_id);
         return new Response();
     }
 }
