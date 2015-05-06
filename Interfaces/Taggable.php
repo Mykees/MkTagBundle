@@ -22,6 +22,8 @@ interface Taggable {
      */
     public function getModelId();
 
+    public function setTags($tag);
+
     /**
      * Return all tags of referer model
      * @return mixed

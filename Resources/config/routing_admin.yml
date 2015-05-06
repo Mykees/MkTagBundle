@@ -1,4 +1,4 @@
-mykees_tag_delete_relation:
+mykees_delete_relation:
     path: /delete/relation/{relation_id}
     defaults: { _controller: MykeesTagBundle:Tags:deleteRelation }
     requirements:

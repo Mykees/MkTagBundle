@@ -16,16 +16,26 @@ trait TaggableTrait {
 
     public $tags;
 
-    public function getModel(){
+    public function getModel()
+    {
         return Reflection::getClassShortName($this);
     }
 
-    public function getModelId(){
+    public function getModelId()
+    {
         return $this->getId();
     }
 
-    public function getTags(){
+
+    public function setTags($tags)
+    {
+        $this->tags = !empty($tags) ? new ArrayCollection($tags) : null;
+    }
+
+    public function getTags()
+    {
         $this->tags = $this->tags ?: new ArrayCollection();
+        
         return $this->tags;
     }
 } 

@@ -26,7 +26,8 @@ class TagManager {
 
     use ManagerArrayTrait, ManagerObjectTrait;
 
-    public function __construct( EntityManager $em, $tag=null, $tagRelation=null ){
+    public function __construct( EntityManager $em, $tag=null, $tagRelation=null )
+    {
         $this->em = $em;
         $this->tag = $tag ?: 'Mykees\TagBundle\Entity\Tag';
         $this->tagRelation = $tagRelation ?: 'Mykees\TagBundle\Entity\TagRelation';
@@ -34,8 +35,10 @@ class TagManager {
 
 
 
-    public function findTagRelation( $model ){
-        if(is_array($model)){
+    public function findTagRelation( $model )
+    {
+        if(is_array($model))
+        {
             $this->getTagRelationArray($model);
         }else{
             $this->getTagRelation($model);
@@ -47,7 +50,8 @@ class TagManager {
      * @param Taggable $model
      * @internal param $id
      */
-    public function deleteTagRelation( Taggable $model ){
+    public function deleteTagRelation( Taggable $model )
+    {
         $tagRelationList = $this->em->createQueryBuilder()
             ->select('t')
             ->from($this->tagRelation, 't')
@@ -58,10 +62,11 @@ class TagManager {
             ->getQuery()
             ->getResult();
 
-        foreach ($tagRelationList as $relation) {
+        foreach($tagRelationList as $relation)
+        {
             $this->em->remove($relation);
             $this->em->flush();
-            $this->uselessTag($relation->getTag()->getId());
+            $this->useless($relation->getTag()->getId());
         }
     }
 
@@ -69,7 +74,8 @@ class TagManager {
      * Remove tag
      * @param $tag_id
      */
-    public function deleteTag( $tag_id ){
+    public function delete( $tag_id )
+    {
         $tag = $this->em->createQueryBuilder()
             ->select('t')
             ->from($this->tag, 't')
@@ -81,39 +87,69 @@ class TagManager {
         $this->em->flush();
     }
 
+    public function deleteByName($name)
+    {
+
+        if(is_array($name))
+        {
+            $names = $this->findByName($names);
+            foreach($names as $n)
+            {
+                $this->em->remove($n);
+                $this->em->flush();
+            }
+        }else{
+            $tag = $this->em->createQueryBuilder()
+                ->select('t')
+                ->from($this->tag, 't')
+                ->where('t.id = :id')
+                ->setParameter('id', $tag_id)
+                ->getQuery()
+                ->getOneOrNullResult();
+            $this->em->remove($tag);
+            $this->em->flush();
+        }
+    }
+
     /**
      * Save Tag Relation and add create and save tags if don't exist
      * @param Taggable $model
      */
-    public function saveRelation( Taggable $model ){
-        if($model->getTags()->containsKey('name') && $model->getTags()->count() > 0){
-            $tagsAdded = explode(',',$model->getTags()->get('name'));
-            $model->getTags()->clear();
+    public function saveRelation( Taggable $model )
+    {
+        if($model->getTags()->count() > 0)
+        {
+            $addedTags = $model->getTags();
             $model_id = $model->getModelId();
             $model_name = $model->getModel();
+            $addNewTags = $addedTags;
 
-            $tagsRelationExisted = $this->queryRelation($model);
-            $newTagList = $this->manageTags($tagsAdded);
-            $this->addTags($newTagList,$model);
+            $tagsRelationExisted = $this->findRelationByTagName($model->getTags(),$model);
 
             //Remove existed Tag from collection
-            foreach($tagsRelationExisted as $tagExisted){
-                if($model->getTags()->exists(function($index,$newTagList) use ($tagExisted){
-                    return $newTagList->getName() === $tagExisted->getName();
+            foreach($tagsRelationExisted as $tagExisted)
+            {
+                if($addedTags->exists(function($index,$addedTag) use ($tagExisted)
+                {
+                    return $addedTag->getName() === $tagExisted->getName();
                 })){
-                    $model->getTags()->removeElement($tagExisted);
+                    $addNewTags->removeElement($tagExisted);
                 }
             }
 
             //Save
-            foreach($model->getTags() as $tag){
+            foreach($addNewTags as $tag)
+            {
                 $relation = new TagRelation();
                 $relation->setModel($model_name);
                 $relation->setModelId($model_id);
                 $relation->setTag($tag);
                 $this->em->persist($relation);
+            }
+
+            if (count($addNewTags) > 0) 
+            {
                 $this->em->flush();
-                $model->getTags()->removeElement($tag);
             }
         }
 
@@ -123,9 +159,11 @@ class TagManager {
      * Return Tag by a name
      * @param array $names
      */
-    public function findTagsByName( $names ){
+    public function findByName( $names )
+    {
         $q = $this->tagsQuery();
         $query = $this->addNameConstraint($q,$names);
+
         return $query->getQuery()->getResult();
     }
 
@@ -135,8 +173,10 @@ class TagManager {
      * @param null $modelType
      * @return array
      */
-    public function findReferer( $slug, $modelType=null ){
+    public function findReferer( $slug, $modelType=null )
+    {
         $modelRefererIds = [];
+
         $q = $this->em->createQueryBuilder()
             ->select('tr')
             ->from($this->tagRelation,'tr')
@@ -145,11 +185,15 @@ class TagManager {
             ->where('t.slug = :slug')
             ->setParameter('slug',$slug)
         ;
+
         $query = $this->addModelTypeConstraint($q,$modelType);
         $result = $query->getQuery()->getResult();
-        foreach($result as $tr){
+
+        foreach($result as $tr)
+        {
             array_push($modelRefererIds,$tr->getModelId());
         }
+
         return $modelRefererIds;
     }
 
@@ -157,34 +201,44 @@ class TagManager {
      * Delete tag unused
      * @param $tag_id
      */
-    public function uselessTag($tag_id){
+    public function useless($tag_id)
+    {
         $count = $this->em->getRepository('MykeesTagBundle:TagRelation')->findCount($tag_id);
-        if($count == 0){
-            $this->deleteTag($tag_id);
+        if($count == 0)
+        {
+            $this->delete($tag_id);
         }
     }
 
-    public function createTag( $name ){
+    public function create( $name )
+    {
         $tag = new Tag();
         $tag->setName($name);
         $tag->setSlug(Urlizer::urlize($name));
         $this->em->persist($tag);
         $this->em->flush();
+
         return $tag;
     }
 
-    public function countTags(){
+    public function countTags()
+    {
       return $this->em->getRepository('MykeesTagBundle:Tag')->findCount();
     }
 
-    public function manageTags( $names ){
-        foreach($names as $k=>$name){
+    public function manageTags( $names )
+    {
+        foreach($names as $k=>$name)
+        {
             $name = trim($name);
-            if(!empty($name)){
+            if(!empty($name))
+            {
                 $q = $this->queryTag();
                 $query = $this->addNameConstraint($q,$name);
                 $tagExist = $query->getQuery()->getOneOrNullResult();
-                if(!empty($tagExist)){
+
+                if(!empty($tagExist))
+                {
                     $names[$k] = $tagExist;
                 }else{
                     $tag = $this->createTag($name);
@@ -194,6 +248,7 @@ class TagManager {
                 unset($names[$k]);
             }
         }
+
         return $names;
     }
 }
