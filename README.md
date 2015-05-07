@@ -33,7 +33,7 @@ or
 	```yml
 	mykees_tag_admin:
 		resource: "@MykeesTagBundle/Resources/config/routing_admin.yml"
-	    prefix:   /admin
+	    prefix:   /admin/tag
 	```
 
 4. Update your database:
@@ -83,7 +83,7 @@ Now you can add or retrieve tags associated with your entity.
 
         ...
 
-        ->add('tags','mykees_tag_form',[
+        ->add('tags','mk_tag',[
             'label'=>'Les Tags:',
         ])
     ;
@@ -104,30 +104,13 @@ tag1,tag2,tag3,tag with spaces,add tag with mykees tag bundle,......
 
 ##Retrieve Tags
 
-On first you must load the **tagManager** in your controller :
-
-```php
-
-namespace Mykees\BlogBundle\Controller;
-
-use Mykees\TagBundle\Traits\LoadManagerTrait;
-...
-
-class AdminController extends Controller
-{
-    use LoadManagerTrait;
-	
-	....
-}
-```
-
-In your controller actions, to get all tags associated with your entity, you can use **findTagRelation()** function of the tagManager :
+In your controller actions, to get all tags associated with your entity, you can use **findTagRelation()** function of the 'mk.tag_manager' service:
 
 ```php
 public function indexAction()
 {
-	$posts = $this->getManage()->getRepository('MykeesBlogBundle:Post')->findAll();
-	$this->tagManager()->findTagRelation($posts);
+	$posts = $this->getManager()->getRepository('MykeesBlogBundle:Post')->findAll();
+	$this->get('mk.tag_manager')->findTagRelation($posts);
 }
 ```
 
@@ -153,12 +136,12 @@ For more comfort, removing tags uses **ajax**.
 	public function editAction( $id=null, Request $request )
     {
         if( $id ){
-            $post = $this->getManage()->getRepository('MykeesBlogBundle:Post')->find($id);
+            $post = $this->getManager()->getRepository('MykeesBlogBundle:Post')->find($id);
         }else{
             $post = new Post();
         }
         
-        $this->tagManager()->findTagRelation($post);
+        $this->get('mk.tag_manager')->findTagRelation($post);
 
     	......
 
@@ -209,31 +192,31 @@ Don't forget to add attribute class **deltTag** on your link.
 1. Save relation
 	
 	```php
-	$this->tagManager()->saveRelation(Taggable $model)
+	$this->get('mk.tag_manager')->saveRelation(Taggable $model)
 	```
 
 2. Delete relation
 	
 	```php
-	$this->tagManager()->deleteTagRelation(Taggable $model)
+	$this->get('mk.tag_manager')->deleteTagRelation(Taggable $model)
 	```
 
 3. find tags associated with an entity
 
 	```php
-	$this->tagManager()->findTagRelation($model)
+	$this->get('mk.tag_manager')->findTagRelation($model)
 	```
 
 4. find tags by name
 
 	```php
-	$this->tagManager()->findTagsByName($names)
+	$this->get('mk.tag_manager')->findByName($names)
 	```
 
 5. find entity ids associated to tags
 
 	```php
-	$this->tagManager()->findReferer( $slug_tag, $model_type=null )
+	$this->get('mk.tag_manager')->findReferer( $slug_tag, $model_type=null )
 	```
 
 
