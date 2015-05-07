@@ -241,7 +241,7 @@ class TagManager {
                 {
                     $names[$k] = $tagExist;
                 }else{
-                    $tag = $this->createTag($name);
+                    $tag = $this->create($name);
                     $names[$k] = $tag;
                 }
             }else{
