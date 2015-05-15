@@ -63,6 +63,7 @@ class TagListener {
         
         if( $model instanceof Taggable )
         {
+            $model->setRemove(true);
             $this->manager->deleteTagRelation($model);
         }
     }

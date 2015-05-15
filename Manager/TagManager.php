@@ -61,7 +61,6 @@ class TagManager {
             ->setParameter('id', $model->getModelId())
             ->getQuery()
             ->getResult();
-        $model->setRemove(true);
 
         foreach($tagRelationList as $relation)
         {
