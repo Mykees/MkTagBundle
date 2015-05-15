@@ -29,4 +29,7 @@ interface Taggable {
      * @return mixed
      */
     public function getTags();
+
+    public function setRemove($remove);
+    public function getRemove();
 } 

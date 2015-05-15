@@ -15,6 +15,7 @@ use Mykees\TagBundle\Util\Reflection;
 trait TaggableTrait {
 
     public $tags;
+    public $remove = false;
 
     public function getModel()
     {
@@ -37,5 +38,16 @@ trait TaggableTrait {
         $this->tags = $this->tags ?: new ArrayCollection();
         
         return $this->tags;
+    }
+
+    public function getRemove()
+    {
+        return $this->remove;
+    }
+
+    public function setRemove($remove)
+    {
+        $this->remove = $remove;
+        return $this->remove;
     }
 } 

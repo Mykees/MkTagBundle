@@ -61,6 +61,7 @@ class TagManager {
             ->setParameter('id', $model->getModelId())
             ->getQuery()
             ->getResult();
+        $model->setRemove(true);
 
         foreach($tagRelationList as $relation)
         {
@@ -117,39 +118,42 @@ class TagManager {
      */
     public function saveRelation( Taggable $model )
     {
-        if($model->getTags()->count() > 0)
+        if(!$model->getRemove())
         {
-            $addedTags = $model->getTags();
-            $model_id = $model->getModelId();
-            $model_name = $model->getModel();
-            $addNewTags = $addedTags;
-
-            $tagsRelationExisted = $this->findRelationByTagName($model->getTags(),$model);
-
-            //Remove existed Tag from collection
-            foreach($tagsRelationExisted as $tagExisted)
+            if($model->getTags()->count() > 0)
             {
-                if($addedTags->exists(function($index,$addedTag) use ($tagExisted)
+                $addedTags = $model->getTags();
+                $model_id = $model->getModelId();
+                $model_name = $model->getModel();
+                $addNewTags = $addedTags;
+
+                $tagsRelationExisted = $this->findRelationByTagName($model->getTags(),$model);
+
+                //Remove existed Tag from collection
+                foreach($tagsRelationExisted as $tagExisted)
                 {
-                    return $addedTag->getName() === $tagExisted->getName();
-                })){
-                    $addNewTags->removeElement($tagExisted);
+                    if($addedTags->exists(function($index,$addedTag) use ($tagExisted)
+                    {
+                        return $addedTag->getName() === $tagExisted->getName();
+                    })){
+                        $addNewTags->removeElement($tagExisted);
+                    }
                 }
-            }
 
-            //Save
-            foreach($addNewTags as $tag)
-            {
-                $relation = new TagRelation();
-                $relation->setModel($model_name);
-                $relation->setModelId($model_id);
-                $relation->setTag($tag);
-                $this->em->persist($relation);
-            }
+                //Save
+                foreach($addNewTags as $tag)
+                {
+                    $relation = new TagRelation();
+                    $relation->setModel($model_name);
+                    $relation->setModelId($model_id);
+                    $relation->setTag($tag);
+                    $this->em->persist($relation);
+                }
 
-            if (count($addNewTags) > 0) 
-            {
-                $this->em->flush();
+                if (count($addNewTags) > 0)
+                {
+                    $this->em->flush();
+                }
             }
         }
 
