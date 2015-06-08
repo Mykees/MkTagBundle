@@ -8,41 +8,25 @@
 
 namespace Mykees\TagBundle\Twig\Extension;
 
-
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 class TagExtension extends \Twig_Extension {
 
-    protected $container;
-
-    /**
-     * Initialize tinymce helper
-     *
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    public function getService($id)
-    {
-        return $this->container->get($id);
-    }
 
     public function getFunctions()
     {
         return array(
-            'javascript' => new \Twig_Function_Method($this, 'init', array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('javascript', [$this, 'init'], [
+                'is_safe'=>array('html'),
+                'needs_environment'=>true
+            ])
         );
     }
 
-    public function init(){
-        return  $this->getService('templating')->render('MykeesTagBundle:Tpl:javascript.html.twig');
+    public function init(\Twig_Environment $env){
+        return  $env->render('MykeesTagBundle:Tpl:javascript.html.twig');
     }
 
     public function getName()
     {
-       return "mykees_tag_extension";
+        return "mykees_tag_extension";
     }
 }

@@ -11,7 +11,7 @@ namespace Mykees\TagBundle\Manager;
 
 use Mykees\TagBundle\Util\Urlizer;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Mykees\TagBundle\Interfaces\Taggable;
 use Mykees\TagBundle\Traits\ManagerArrayTrait;
 use Mykees\TagBundle\Traits\ManagerObjectTrait;
@@ -26,9 +26,9 @@ class TagManager {
 
     use ManagerArrayTrait, ManagerObjectTrait;
 
-    public function __construct( EntityManager $em, $tag=null, $tagRelation=null )
+    public function __construct( ManagerRegistry $managerRegistry, $tag=null, $tagRelation=null )
     {
-        $this->em = $em;
+        $this->em = $managerRegistry->getManager();
         $this->tag = $tag ?: 'Mykees\TagBundle\Entity\Tag';
         $this->tagRelation = $tagRelation ?: 'Mykees\TagBundle\Entity\TagRelation';
     }
@@ -48,10 +48,14 @@ class TagManager {
     /**
      * Remove relation between Tag and a model given
      * @param Taggable $model
-     * @internal param $id
+     * @param bool $onlyDeleteRelation
      */
-    public function deleteTagRelation( Taggable $model )
+    public function deleteTagRelation( Taggable $model, $onlyDeleteRelation = false )
     {
+        if($onlyDeleteRelation)
+        {
+            $model->setRemove(true);
+        }
         $tagRelationList = $this->em->createQueryBuilder()
             ->select('t')
             ->from($this->tagRelation, 't')
@@ -92,7 +96,7 @@ class TagManager {
 
         if(is_array($name))
         {
-            $names = $this->findByName($names);
+            $names = $this->findByName($name);
             foreach($names as $n)
             {
                 $this->em->remove($n);
@@ -102,8 +106,8 @@ class TagManager {
             $tag = $this->em->createQueryBuilder()
                 ->select('t')
                 ->from($this->tag, 't')
-                ->where('t.id = :id')
-                ->setParameter('id', $tag_id)
+                ->where('t.name = :name')
+                ->setParameter('name', $name)
                 ->getQuery()
                 ->getOneOrNullResult();
             $this->em->remove($tag);
@@ -226,7 +230,7 @@ class TagManager {
 
     public function countTags()
     {
-      return $this->em->getRepository('MykeesTagBundle:Tag')->findCount();
+        return $this->em->getRepository('MykeesTagBundle:Tag')->findCount();
     }
 
     public function manageTags( $names )

@@ -21,4 +21,4 @@ class TagRepository extends EntityRepository {
             ->getSingleScalarResult()
             ;
     }
-} 
+}

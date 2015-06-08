@@ -50,4 +50,4 @@ trait TaggableTrait {
         $this->remove = $remove;
         return $this->remove;
     }
-} 
+}

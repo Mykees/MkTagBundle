@@ -98,4 +98,4 @@ trait ManagerArrayTrait {
             $model->getTags()->clear();
         }
     }
-} 
+}

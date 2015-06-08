@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="./vendor/autoload.php" colors="true">
+    <!-- Les fichiers de tests à lancer -->
+    <testsuites>
+        <testsuite name="MkTagBundle Test suite">
+            <directory suffix="Test.php">./Tests</directory>
+        </testsuite>
+    </testsuites>
+    <!-- Quels fichiers sont concernés par l'évaluation du code coverage -->
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./Resources</directory>
+                <directory>./Tests</directory>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+        <server name="KERNEL_DIR" value="./Tests/Fixtures/app/" />
+    </php>
+</phpunit>

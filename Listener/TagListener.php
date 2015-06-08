@@ -13,25 +13,24 @@ use Doctrine\ORM\Event\PostFlushEventArgs;
 use Doctrine\ORM\Events;
 use Mykees\TagBundle\Entity\Tag;
 use Mykees\TagBundle\Interfaces\Taggable;
-use Mykees\TagBundle\Util\Reflection;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Mykees\TagBundle\Manager\TagManager;
 
 class TagListener {
 
-    public $container;
-    public $manager;
+    public $managerRegistry;
     public $entity;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        $this->container = $container;
+        $this->managerRegistry = $managerRegistry;
     }
 
     public function postFlush(PostFlushEventArgs $args)
     {
         $em  = $args->getEntityManager();
         $uow  = $em->getUnitOfWork();
-        $this->manager = $this->container->get('mk.tag_manager');
+        $manager = new TagManager($this->managerRegistry);
 
         foreach($uow->getIdentityMap() as $model)
         {
@@ -51,7 +50,7 @@ class TagListener {
             if(!empty($tags))
             {
                 $this->entity->setTags($tags);
-                $this->manager->saveRelation($this->entity);
+                $manager->saveRelation($this->entity);
             }
         }
     }
@@ -59,12 +58,12 @@ class TagListener {
     public function preRemove(LifecycleEventArgs $args)
     {
         $model = $args->getEntity();
-        $this->manager = $this->container->get('mk.tag_manager');
-        
+        $manager = new TagManager($this->managerRegistry);
+
         if( $model instanceof Taggable )
         {
             $model->setRemove(true);
-            $this->manager->deleteTagRelation($model);
+            $manager->deleteTagRelation($model);
         }
     }
 

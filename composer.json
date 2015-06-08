@@ -1,33 +1,46 @@
 {
-    "name": "mykees/symfony2-tag-bundle",
-    "type": "symfony-bundle",
-    "description": "Symfony Tag Bundle",
-    "keywords": ["symfony tag bundle", "tag"],
-    "authors": [
-        {
-            "name": "Rafidison Michaël",
-            "email": "rafidisonmichael@gmail.com"
-        }
-    ],
-    "require-dev": {
-        "liip/functional-test-bundle": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
-    },
-    "autoload": {
-        "psr-0": {
-            "Mykees\\TagBundle": ""
-        }
-    },
-    "require": {
-        "php": ">=5.4",
-        "symfony/framework-bundle":         "~2.3",
-        "twig/twig":                        "*",
-        "doctrine/doctrine-bundle":         "*"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
-    "target-dir" : "Mykees/TagBundle"
+  "name": "mykees/symfony2-tag-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony Tag Bundle",
+  "keywords": ["symfony tag bundle", "tag"],
+  "authors": [
+    {
+      "name": "Rafidison Michaël",
+      "email": "rafidisonmichael@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "sensio/generator-bundle": "~2.3",
+    "liip/functional-test-bundle": "dev-master",
+    "doctrine/doctrine-fixtures-bundle": "dev-master",
+
+    "mykees/blog-bundle":"1.0.*@dev",
+    "mykees/symfony2-comment-bundle": "1.0.*@dev",
+    "friendsofsymfony/user-bundle": "~2.0@dev",
+    "doctrine/orm": "~2.2,>=2.2.3,<2.5",
+    "doctrine/doctrine-bundle": "~1.2",
+    "symfony/monolog-bundle": "~2.3",
+    "sensio/framework-extra-bundle": "3.0.*@dev",
+    "symfony/assetic-bundle": "~2.3",
+    "symfony/swiftmailer-bundle": "~2.3",
+    "symfony/twig-bundle": "~2.1",
+    "twig/extensions": "~1.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "Mykees\\TagBundle": ""
+    }
+  },
+  "require": {
+    "php": ">=5.4",
+    "symfony/framework-bundle":         "~2.3",
+    "twig/twig":                        "*",
+    "doctrine/doctrine-bundle":         "*"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "target-dir" : "Mykees/TagBundle"
 }

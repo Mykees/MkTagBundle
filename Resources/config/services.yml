@@ -7,7 +7,7 @@ services:
 
     mk.tag_manager:
         class: Mykees\TagBundle\Manager\TagManager
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine"]
 
     mk.tag.form:
         class: Mykees\TagBundle\Form\TagType
@@ -17,13 +17,12 @@ services:
 
     mk.tag.listener:
         class: Mykees\TagBundle\Listener\TagListener
-        arguments: ['@service_container']
+        arguments: ["@doctrine"]
         tags:
             - { name: doctrine.event_listener, event: postFlush, method: postFlush }
             - { name: doctrine.event_listener, event: preRemove, method: preRemove }
 
     mykees.twig.tag_extension:
         class: Mykees\TagBundle\Twig\Extension\TagExtension
-        arguments: ["@service_container"]
         tags:
             - { name: twig.extension, alias: mykees_tag_extension }

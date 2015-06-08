@@ -157,4 +157,4 @@ trait ManagerObjectTrait {
         
         return $query;
     }
-} 
+}

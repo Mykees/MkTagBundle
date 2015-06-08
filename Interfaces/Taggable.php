@@ -32,4 +32,4 @@ interface Taggable {
 
     public function setRemove($remove);
     public function getRemove();
-} 
+}
