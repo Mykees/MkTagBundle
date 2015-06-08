@@ -14,9 +14,6 @@ class Reflection {
     public static function getClassName($model)
     {
         $reflection = new \ReflectionClass($model);
-        if(self::isProxyClass($reflection) && $reflection->getParentClass()) {
-            $reflection = $reflection->getParentClass();
-        }
         return $reflection->getName();
     }
 

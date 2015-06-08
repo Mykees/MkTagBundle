@@ -14,7 +14,7 @@ use Mykees\TagBundle\Entity\Tag;
 
 class LoadTags implements FixtureInterface {
 
-    function load(ObjectManager $manager)
+    public function load(ObjectManager $manager)
     {
     }
 }

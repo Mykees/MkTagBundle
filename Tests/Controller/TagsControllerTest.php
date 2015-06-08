@@ -110,11 +110,11 @@ class TagsControllerTest extends WebTestCase
 
         $post1 = $this->em->getRepository('MvcBlogBundle:Post')->find(29);
         $this->manager->manageTags(['XboxOne','Ps4','Wii U']);
-        $this->manager->saveRelation($post1);
+        $this->save($post1);
 
         $post2 = $this->em->getRepository('MvcBlogBundle:Post')->find(30);
         $this->manager->manageTags(['Pc','GameBoy','New Nintendo 3DS']);
-        $this->manager->saveRelation($post2);
+        $this->save($post2);
 
 
         $this->manager->deleteTagRelation($post1,true);
@@ -126,9 +126,17 @@ class TagsControllerTest extends WebTestCase
     public function testFindModelRefererBySlug(){
         $post = $this->em->getRepository('MvcBlogBundle:Post')->find(33);
         $this->manager->manageTags(['XboxOne','Ps4','Wii U']);
-        $this->manager->saveRelation($post);
+        $this->save($post);
 
         $referers = $this->manager->findReferer( 'xboxone', 'Post' );
         $this->assertEquals(33, current($referers));
+    }
+
+    /**
+     * @param $post
+     */
+    public function save($post)
+    {
+        $this->manager->saveRelation($post);
     }
 }

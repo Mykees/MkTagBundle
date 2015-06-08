@@ -31,6 +31,7 @@ class TagListener {
         $em  = $args->getEntityManager();
         $uow  = $em->getUnitOfWork();
         $manager = new TagManager($this->managerRegistry);
+        $tags = array();
 
         foreach($uow->getIdentityMap() as $model)
         {
