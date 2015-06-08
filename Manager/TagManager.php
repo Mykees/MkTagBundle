@@ -168,7 +168,7 @@ class TagManager {
      */
     public function findByName( $names )
     {
-        $q = $query = $this->em->createQueryBuilder()
+        $q = $this->em->createQueryBuilder()
             ->select('t')
             ->from($this->tag,'t')
 
