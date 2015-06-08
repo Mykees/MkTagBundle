@@ -17,20 +17,6 @@ class LoadTagRelation implements FixtureInterface {
 
     function load(ObjectManager $manager)
     {
-        for($i=1; $i<15; $i++)
-        {
-            $tag = new Tag();
-            $tag->setName('Tag'.$i);
-            $tag->setSlug('tag'.$i);
-            $manager->persist($tag);
-            $manager->flush();
 
-            $tagRelation = new TagRelation();
-            $tagRelation->setModel('Post');
-            $tagRelation->setModelId($i);
-            $tagRelation->setTag($tag);
-            $manager->persist($tagRelation);
-            $manager->flush();
-        }
     }
 }
