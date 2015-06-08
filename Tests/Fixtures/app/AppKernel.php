@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
             new Mvc\BlogBundle\MvcBlogBundle(),
+            new Mykees\MediaBundle\MykeesMediaBundle(),
             new Mykees\TagBundle\MykeesTagBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
