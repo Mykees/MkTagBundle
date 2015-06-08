@@ -2,7 +2,7 @@
   "name": "mykees/symfony2-tag-bundle",
   "type": "symfony-bundle",
   "description": "Symfony Tag Bundle",
-  "keywords": ["symfony tag bundle", "tag"],
+  "keywords": ["tag bundle", "tag","symfony","bundle"],
   "license": "MIT",
   "authors": [
     {
@@ -32,7 +32,7 @@
     "php": ">=5.4",
     "symfony/framework-bundle":         "~2.3",
     "twig/twig":                        "*",
-    "doctrine/doctrine-bundle":         "*"
+    "doctrine/doctrine-bundle": "~1.2"
   },
   "autoload": {
     "psr-0": {
