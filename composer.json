@@ -29,16 +29,16 @@
     "symfony/twig-bundle": "~2.1",
     "twig/extensions": "~1.0"
   },
-  "autoload": {
-    "psr-0": {
-      "Mykees\\TagBundle": ""
-    }
-  },
   "require": {
     "php": ">=5.4",
     "symfony/framework-bundle":         "~2.3",
     "twig/twig":                        "*",
     "doctrine/doctrine-bundle":         "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Mykees\\TagBundle": ""
+    }
   },
   "extra": {
     "branch-alias": {
