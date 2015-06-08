@@ -5,7 +5,6 @@ namespace Mykees\TagBundle\Form;
 use Mykees\TagBundle\Manager\TagManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class TagType extends AbstractType
 {

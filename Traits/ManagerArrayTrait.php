@@ -10,7 +10,6 @@ namespace Mykees\TagBundle\Traits;
 
 
 use Mykees\TagBundle\Entity\Tag;
-use Mykees\TagBundle\Entity\TagRelation;
 use Mykees\TagBundle\Interfaces\Taggable;
 
 trait ManagerArrayTrait {

@@ -9,10 +9,8 @@
 namespace Mykees\TagBundle\Form;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Mykees\TagBundle\Manager\TagManager;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class TagTransformer implements DataTransformerInterface
 {

@@ -69,9 +69,9 @@ class TagManager {
         foreach($tagRelationList as $relation)
         {
             $this->em->remove($relation);
-            $this->em->flush();
             $this->useless($relation->getTag()->getId());
         }
+        $this->em->flush();
     }
 
     /**
@@ -135,7 +135,7 @@ class TagManager {
                 //Remove existed Tag from collection
                 foreach($tagsRelationExisted as $tagExisted)
                 {
-                    if($addedTags->exists(function($index,$addedTag) use ($tagExisted)
+                    if($addedTags->exists(function($index, Tag $addedTag) use ($tagExisted)
                     {
                         return $addedTag->getName() === $tagExisted->getName();
                     })){
@@ -211,7 +211,7 @@ class TagManager {
     public function useless($tag_id)
     {
         $count = $this->em->getRepository('MykeesTagBundle:TagRelation')->findCount($tag_id);
-        if($count == 0)
+        if($count < 2)
         {
             $this->delete($tag_id);
         }

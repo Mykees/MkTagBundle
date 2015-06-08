@@ -10,7 +10,6 @@ namespace Mykees\TagBundle\Traits;
 
 use Mykees\TagBundle\Util\Urlizer;
 use Mykees\TagBundle\Entity\Tag;
-use Mykees\TagBundle\Entity\TagRelation;
 use Mykees\TagBundle\Interfaces\Taggable;
 use Doctrine\ORM\Query\Expr;
 
@@ -119,7 +118,7 @@ trait ManagerObjectTrait {
         return $query;
     }
 
-    protected function queryRelation($model)
+    protected function queryRelation(Taggable $model)
     {
         $query = $this->em->createQueryBuilder()
             ->select('t')
@@ -135,7 +134,7 @@ trait ManagerObjectTrait {
         return $query;
     }
 
-    protected function findRelationByTagName($names, $model)
+    protected function findRelationByTagName(array $names, $model)
     {
         $slugified = [];
         foreach($names as $name)
