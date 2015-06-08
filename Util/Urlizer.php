@@ -1,6 +1,6 @@
 <?php
 
-namespace Mykees\MediaBundle\Util;
+namespace Mykees\TagBundle\Util;
 
     /*
      * This class is from DoctrineExtensions Bundle
