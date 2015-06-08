@@ -100,8 +100,8 @@ class TagManager {
             foreach($names as $n)
             {
                 $this->em->remove($n);
-                $this->em->flush();
             }
+            $this->em->flush();
         }else{
             $tag = $this->em->createQueryBuilder()
                 ->select('t')
