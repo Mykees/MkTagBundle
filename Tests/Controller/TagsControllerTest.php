@@ -132,6 +132,8 @@ class TagsControllerTest extends WebTestCase
         $this->assertEquals(33, current($referers));
     }
 
+
+
     /**
      * @param $post
      */

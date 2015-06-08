@@ -21,7 +21,7 @@
     "mykees/symfony2-comment-bundle": "1.0.*@dev",
     "friendsofsymfony/user-bundle": "~2.0@dev",
     "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-    "doctrine/doctrine-bundle": "~1.2",
+    "doctrine/doctrine-bundle": "*",
     "symfony/monolog-bundle": "~2.3",
     "sensio/framework-extra-bundle": "3.0.*@dev",
     "symfony/assetic-bundle": "~2.3",
@@ -38,7 +38,6 @@
     "php": ">=5.4",
     "symfony/framework-bundle":         "~2.3",
     "twig/twig":                        "*",
-    "doctrine/doctrine-bundle": "~1.2",
     "doctrine/doctrine-bundle":         "*"
   },
   "extra": {

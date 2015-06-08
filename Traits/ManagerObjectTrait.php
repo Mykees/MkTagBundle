@@ -12,6 +12,8 @@ use Mykees\TagBundle\Util\Urlizer;
 use Mykees\TagBundle\Entity\Tag;
 use Mykees\TagBundle\Interfaces\Taggable;
 use Doctrine\ORM\Query\Expr;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\QueryBuilder;
 
 trait ManagerObjectTrait {
 
@@ -84,7 +86,7 @@ trait ManagerObjectTrait {
         return $datas;
     }
 
-    protected function addNameConstraint($query,$names)
+    protected function addNameConstraint(QueryBuilder $query,$names)
     {
         if($names)
         {
@@ -101,7 +103,7 @@ trait ManagerObjectTrait {
         return $query;
     }
 
-    protected function addModelTypeConstraint($query,$modelType)
+    protected function addModelTypeConstraint(QueryBuilder $query,$modelType)
     {
         if($modelType)
         {
@@ -134,7 +136,7 @@ trait ManagerObjectTrait {
         return $query;
     }
 
-    protected function findRelationByTagName(array $names, $model)
+    protected function findRelationByTagName(ArrayCollection $names, Taggable $model)
     {
         $slugified = [];
         foreach($names as $name)

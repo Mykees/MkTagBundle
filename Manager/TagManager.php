@@ -168,10 +168,19 @@ class TagManager {
      */
     public function findByName( $names )
     {
-        $q = $this->tagsQuery();
-        $query = $this->addNameConstraint($q,$names);
+        $q = $query = $this->em->createQueryBuilder()
+            ->select('t')
+            ->from($this->tag,'t')
 
-        return $query->getQuery()->getResult();
+        ;
+        if(is_array($names))
+        {
+            $q->where($this->em->createQueryBuilder()->expr()->in('t.name', $names));
+        }else{
+            $q->where('t.name = :name')->setParameter('name', $names);
+        }
+
+        return $q->getQuery()->getResult();
     }
 
     /**
