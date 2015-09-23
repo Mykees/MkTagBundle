@@ -1,120 +1,350 @@
-<!doctype html>
-<html class="no-js" lang="">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Configuration | Symfony2 Tag Bundle by Mykees</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/app.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300|Karla:400,400italic,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
-</head>
-<body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+        <!-- Place favicon.ico in the root directory -->
 
-<div class="page">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/materialize.min.css">
+        <link rel="stylesheet" href="assets/css/app.css">
+    </head>
+    <body>
 
-    <div class="header header--tag">
-        <div class="header__container">
-            <h1>Symfony2 <span>TagBundle</span></h1>
-        </div>
-    </div>
-
-    <div class="content">
-
-        <div class="content_container">
-            <div class="nav">
-                <a class="nav__link nav__link--current" href="http://Mykees.github.io/MkTagBundle/">Configuration</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkTagBundle/usage.html">Usage</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkTagBundle/functions.html">Functions</a>
-                <a class="nav__link" href="http://Mykees.github.io/MkTagBundle/infos.html">More infos</a>
+      <div class="navbar-fixed">
+          <nav class="teal darken-1">
+            <div class="container">
+                <div class="nav-wrapper">
+                  <a href="http://mykees.github.io/MkTagBundle/" class="brand-logo"><img src="assets/images/tagbundle-logo.png" alt=""></a>
+                  <a href="#" data-activates="mobile-demo" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                  </a>
+                  <ul class="right hide-on-med-and-down">
+                    <li><a href="#modal-contact" class="modal-trigger"><i class="material-icons dp48 left">email</i> Contact</a></li>
+                    <li><a href="#modal-bundles" class="modal-trigger"><i class="material-icons dp48 left">view_module</i> MkBundles</a></li>
+                  </ul>
+                  <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#modal-contact" class="modal-trigger"><i class="material-icons dp48 left">email</i> Contact</a></li>
+                    <li><a href="#modal-bundles" class="modal-trigger"><i class="material-icons dp48 left">MkBundles</i> Other Bundles</a></li>
+                  </ul>
+                </div>
             </div>
-
-            <div class="content__text">
-
-                <h2 class="title-section">Presentation</h2>
-                <p>
-                    The goal of this bundle is to allow you to associate tags with several entities.
-                </p>
+          </nav>
+      </div>
 
 
-                <h2 class="title-section">Installation</h2>
-
-                <p>Add package to require in composer.json:</p>
-                <pre><span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
-    <span class="pl-s"><span class="pl-pds">"</span>mykees/symfony2-tag-bundle<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>1.0.*@dev<span class="pl-pds">"</span></span>
-}</pre>
-                or
-
-                <pre><code>$ php composer.phar require mykees/symfony2-tag-bundle "1.0.*@dev"</code></pre>
-
-                <p>Add this bundle to your application's kernel :</p>
-
-                <pre><span class="pl-s1"><span class="pl-smi">$bundles</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
-<span class="pl-s1">    <span class="pl-k">new</span> <span class="pl-c1">Mykees\TagBundle\</span><span class="pl-c1">MykeesTagBundle</span>(),</span>
-<span class="pl-s1">);</span></pre>
-
-                <p>Add routing in your app/config/routing.yml :</p>
-                <pre><span class="pl-s"><span class="pl-ent">mykees_tag_admin:</span></span>
-    <span class="pl-s"><span class="pl-ent">resource:</span> <span class="pl-s"><span class="pl-pds">"</span>@MykeesTagBundle/Resources/config/routing_admin.yml<span class="pl-pds">"</span></span></span>
-    <span class="pl-s"><span class="pl-ent">prefix:</span>   <span class="pl-s">/admin/tag</span></span></pre>
-
-                <p>Update your database :</p>
-
-                <pre><code>php app/console doctrine:schema:update --force</code></pre>
+      <header class="header" id="header">
+        <div class="row">
+            <div class="col s12 m12 l12 doc-title center blue-grey-text text-lighten-5">Documentation</div>
+            <h1 class="col s12 m12 l12 main-title center blue-grey-text text-lighten-5">
+            MkTagBundle
+            </h1>
+            <div class="col s12 m12 l12 for-sf2 center blue-grey-text text-lighten-5">A bundle tag system for Symfony2</div>
+        </div>
+      </header>
 
 
-                <h2 class="title-section">Make you entity Taggable</h2>
+        <div class="container container-wrapper">
+            <div class="row">
 
-                <p>Add Taggable interface and TaggableTrait trait, in your entity as in the following example :</p>
+              <aside class="col s12 m4 l3" id="aside">
+                <div class="collection" id="sticky">
+                    <a class="collection-item" href="#introducing">Introducing</a>
+                    <a class="collection-item" href="#configuration">Configuration</a>
+                    <a class="collection-item" href="#usage">Usage</a>
+                    <a class="collection-item" href="#useful">Useful functions</a>
+                </div>
+              </aside>
 
-                <pre><span class="pl-s1"><span class="pl-k">namespace</span> <span class="pl-en">YourProject\YourBundle\Entity</span>;</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Doctrine\ORM\Mapping</span> <span class="pl-k">as</span> <span class="pl-c1">ORM</span>;</span>
-<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Mykees\TagBundle\Interfaces\Taggable</span>;</span>
-<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Mykees\TagBundle\Traits\TaggableTrait</span>;</span>
-<span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-c">/**</span></span>
-<span class="pl-s1"><span class="pl-c"> *Post</span></span>
-<span class="pl-s1"><span class="pl-c"> *@ORM\Table()</span></span>
-<span class="pl-s1"><span class="pl-c"> *@ORM\Entity()</span></span>
-<span class="pl-s1"><span class="pl-c"> *@ORM\HasLifecycleCallbacks()</span></span>
-<span class="pl-s1"><span class="pl-c"> */</span></span>
-<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Post</span> <span class="pl-k">implements</span> <span class="pl-e">Taggable</span></span>
-<span class="pl-s1">{</span>
-<span class="pl-s1">    <span class="pl-k">use</span> <span class="pl-c1">TaggableTrait</span>;</span>
-<span class="pl-s1">    <span class="pl-k"><span class="light-code">.....</span></span></span>
-<span class="pl-s1"></span>
-<span class="pl-s1">}</span></pre>
+              <div class="col s12 m8 l9 content">
+
+                    <div class="wrapper-section" id="introducing">
+                        <h3 class="title-section">
+                        <small><a href="#introducing"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Introducing
+                        </h3>
+
+                        <p>
+                            The goal of this bundle is to allow you to associate tags with several entities and manage them.
+                        </p>
+
+                    </div>
+
+                    <div class="wrapper-section" id="configuration">
+                        <h3 class="title-section">
+                        <small><a href="#configuration"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Configuration
+                        </h3>
+
+<!-- =INSTALL -->
+<div class="sub-title"><span class="subtitle bold">Install :</span></div>
+
+<p>Add the bundle in your composer.json :</p>
+<pre class="prettyprint"><code class=" hljs bash"><span class="hljs-string">"require"</span>: {
+    <span class="hljs-string">"mykees/symfony2-tag-bundle"</span>: <span class="hljs-string">"1.0.*@dev"</span>
+}</code></pre>
+
+<p>or</p>
+
+<pre><code class=" hljs bash">$ php composer<span class="hljs-built_in">.</span>phar <span class="hljs-keyword">require</span> mykees/symfony2<span class="hljs-attribute">-tag</span><span class="hljs-attribute">-bundle</span> <span class="hljs-string">"1.0.*@dev"</span></code></pre>
+
+
+
+<p>Enable the bundle :</p>
+<pre><code class="hljs php"><span class="hljs-variable">$bundles</span> = <span class="hljs-keyword">array</span>(
+    // <span class="hljs-keyword">...</span>
+    <span class="hljs-keyword">new</span> Mykees\TagBundle\MykeesTagBundle(),
+);</code></pre>
+
+
+<p>
+    Add routing in your app/config/routing.yml :
+</p>
+<pre class="prettyprint"><code class="hljs bash">mykees_tag_admin:
+    resource: <span class="hljs-string">"@MykeesTagBundle/Resources/config/routing_admin.yml"</span>
+    prefix:   <span class="hljs-regexp">/admin/</span>tag</code></pre>
+
+<p>
+    Update your database :
+</p>
+<pre class="prettyprint"><code class="hljs bash"><span class="hljs-comment">php</span> <span class="hljs-comment">app/console</span> <span class="hljs-comment">doctrine:schema:update</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">force</span></code></pre>
+
+<!--/ INSTALL -->
+
+                    </div>
+
+                    <div class="wrapper-section" id="usage">
+                        <h3 class="title-section">
+                        <small><a href="#usage"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Usage
+                        </h3>
+
+
+<div class="sub-title"><span class="subtitle bold">Make you entity Taggable :</span></div>
+
+<p>Add Taggable interface and TaggableTrait trait, in your entity as in the following example :</p>
+<pre><code class=" hljs php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">YourProject</span>\<span class="hljs-title">YourBundle</span>\<span class="hljs-title">Entity</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Doctrine</span>\<span class="hljs-title">ORM</span>\<span class="hljs-title">Mapping</span> <span class="hljs-title">as</span> <span class="hljs-title">ORM</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Mykees</span>\<span class="hljs-title">TagBundle</span>\<span class="hljs-title">Interfaces</span>\<span class="hljs-title">Taggable</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Mykees</span>\<span class="hljs-title">TagBundle</span>\<span class="hljs-title">Traits</span>\<span class="hljs-title">TaggableTrait</span>;
+
+<span class="hljs-comment">/**
+ *Post
+ *@ORM\Table()
+ *@ORM\Entity()
+ *@ORM\HasLifecycleCallbacks()
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Taggable</span>
+{</span>
+    <span class="hljs-keyword">use</span> <span class="hljs-title">TaggableTrait</span>;
+    .....
+
+}</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">Add tag field :</span></div>
+<p>
+    In your form type, add tags field (You can add text field options if you need) :
+</p>
+<pre><code class="hljs php">$builder
+    <span class="hljs-keyword">//...</span>
+
+    -&gt;add(<span class="hljs-string">'tags'</span>,<span class="hljs-string">'mk_tag'</span>,[
+        <span class="hljs-string">'label'</span>=&gt;<span class="hljs-string">'Les Tags:'</span>,
+    ])
+;</code></pre>
+
+<p>
+    Add input text in your template :
+</p>
+<pre><code class="hljs html"><span class="xml"></span><span class="hljs-expression">{{ <span class="hljs-variable">form</span>_<span class="hljs-variable">row</span>(<span class="hljs-variable">form.tags</span>) }}</span><span class="xml"></span></code></pre>
+
+<p>
+    Now you can add tags <strong>separated by a comma</strong>.
+</p>
+
+
+<div class="sub-title"><span class="subtitle bold">Retrieve Tags :</span></div>
+<p>
+    In your controller actions, you can use some useful functions for retrieve your tags :
+</p>
+<pre><code class=" hljs php"><span class="hljs-regexp">//</span> Find tags associated <span class="hljs-reserved">with</span> a Taggable entity <span class="hljs-keyword">or</span> array <span class="hljs-keyword">of</span> Taggable entities
+$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>findTagRelation($model)</code></pre>
+
+<pre><code class=" hljs php"><span class="hljs-comment">// Find tags by name</span>
+<span class="hljs-variable">$tag</span> <span class="hljs-subst">=</span> <span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mk.tag_manager'</span>)<span class="hljs-subst">-&gt;</span>findByName(<span class="hljs-variable">$names</span>)</code></pre>
+
+
+<div class="sub-title"><span class="subtitle bold">In your view :</span></div>
+<p>
+    And in your template you can display the tags like that :
+</p>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-template_tag">{% <span class="hljs-keyword">if</span> post.getTags() %}</span><span class="xml">
+    </span><span class="hljs-template_tag">{% <span class="hljs-keyword">for</span> tag <span class="hljs-keyword">in</span> post.getTags %}</span><span class="xml">
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"label label-primary"</span>&gt;</span> </span><span class="hljs-variable">{{ tag.name }}</span><span class="xml"> <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    </span><span class="hljs-template_tag">{% <span class="hljs-keyword">endfor</span> %}</span><span class="xml">
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">endif</span> %}</span><span class="xml"></span></code></pre>
+
+
+
+<div class="sub-title"><span class="subtitle bold">Remove Tags :</span></div>
+<p>
+    For more comfort, removing tags uses <strong>Ajax</strong>.
+</p>
+<p>
+    In your edit content, add <strong>javascript extension</strong> (don't forget to add jquery in your <strong>default template</strong>) :
+</p>
+<pre><code class=" hljs html"><span class="xml">// src/YourProject/YourBundle/Resources/views/Blog/edit.html.twig
+
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">extends</span> 'base.html.twig' %}</span><span class="xml">
+
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">block</span> body %}</span><span class="xml">
+.....
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">endblock</span> %}</span><span class="xml">
+
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">block</span> javascripts %}</span><span class="xml">
+    </span><span class="hljs-variable">{{ parent() }}</span><span class="xml">
+    </span><span class="hljs-variable">{{ javascript() }}</span><span class="xml">
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">endblock</span> %}</span><span class="xml"></span></code></pre>
+
+<p>
+    Now you can delete the tags by adding a delete link on them like the following example :
+</p>
+<pre><code class=" hljs html"><span class="xml"></span><span class="hljs-template_tag">{% <span class="hljs-keyword">for</span> tag <span class="hljs-keyword">in</span> post.getTags %}</span><span class="xml">
+   </span><span class="hljs-template_tag">{% <span class="hljs-keyword">if</span> tag %}</span><span class="xml">
+
+       <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"label label-primary"</span>&gt;</span>
+       </span><span class="hljs-variable">{{ tag.name }}</span><span class="xml">
+
+       </span><span class="hljs-template_tag">{% <span class="hljs-keyword">for</span> tr <span class="hljs-keyword">in</span> tag.getTagRelation %}</span><span class="xml">
+
+           <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"</span></span></span><span class="hljs-variable">{{ path('mykees_delete_relation',{'relation_id':tr.id}) }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"delTag"</span>&gt;</span>[x]
+           <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+
+       </span><span class="hljs-template_tag">{% <span class="hljs-keyword">endfor</span> %}</span><span class="xml">
+
+       <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+   </span><span class="hljs-template_tag">{% <span class="hljs-keyword">endif</span> %}</span><span class="xml">
+</span><span class="hljs-template_tag">{% <span class="hljs-keyword">endfor</span> %}</span><span class="xml"></span></code></pre>
+
+                    </div>
+
+
+
+                    <div class="wrapper-section" id="useful">
+                        <h3 class="title-section">
+                        <small><a href="#options"><i class="red-text material-icons small dp48">format_textdirection_l_to_r</i></a></small> Useful functions
+                        </h3>
+
+<p>
+    Remove a tag by name :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>deleteByName($tag_name)</code></pre>
+
+<p>
+    Remove a tag by id :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span><span class="hljs-keyword">delete</span>($tag_id)</code></pre>
+
+<p>
+    Delete relation between tag(s) and an entity :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>deleteTagRelation(Taggable $entity, <span class="hljs-literal">true</span>)</code></pre>
+
+<p>
+    Save relation between tag(s) and entity :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>saveRelation(Taggable $entity)</code></pre>
+
+<p>
+    Find entity ids associated to a tag :
+</p>
+<pre><code class=" hljs php"><span class="hljs-variable">$entities_id</span> <span class="hljs-subst">=</span> <span class="hljs-variable">$this</span><span class="hljs-subst">-&gt;</span>get(<span class="hljs-string">'mk.tag_manager'</span>)<span class="hljs-subst">-&gt;</span>findReferer( <span class="hljs-variable">$slug_tag</span>, <span class="hljs-variable">$model_type</span> )</code></pre>
+
+<p>
+    Find tags by name. <strong>$tag_name</strong> parameter can be an array of tags name :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>findByName($tag_name)</code></pre>
+
+<p>
+    Create a tag :
+</p>
+<pre><code class=" hljs php">$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>create($name)</code></pre>
+
+<p>
+    Create several tags :
+</p>
+<pre><code class=" hljs php">$tags = [<span class="hljs-string">'tag1'</span>,<span class="hljs-string">'tag2'</span>,<span class="hljs-string">'tag3'</span>,<span class="hljs-string">'tag4'</span>];
+$<span class="hljs-keyword">this</span>-&gt;get<span class="hljs-function"><span class="hljs-params">(<span class="hljs-string">'mk.tag_manager'</span>)</span>-&gt;</span>manageTags($tags)</code></pre>
+
+
+
+                    </div>
+
+              </div>
 
             </div>
-
         </div>
 
-    </div>
 
-    <!--OTHERS PROJECTS-->
-    <div class="others__projects">
+      <div id="modal-contact" class="modal modal-custom">
+        <div class="modal-content">
+          <h4 class="center">Source</h4>
+          <p class="center"><a href="https://github.com/Mykees/Symfony2-Tag-Bundle">https://github.com/Mykees/Symfony2-Tag-Bundle</a></p>
 
-        <div class="block__projects">
-            <h2 class="project__title project__comment">
-                <a href="http://mykees.github.io/MkCommentBundle/">
-                    <span>Symfony2 CommentBundle</span>
-                </a>
-            </h2>
+          <h4 class="center">Mail</h4>
+          <p class="center"><a href="http://mykees.fr/">mykeespro@gmail.com/</a></p>
+
+          <h4 class="center">Github</h4>
+          <p class="center"><a href="https://github.com/Mykees">https://github.com/Mykees</a></p>
         </div>
-        <div class="block__projects project__left">
-            <h2 class="project__title project__media">
-                <a href="http://Mykees.github.io/MkMediaBundle/">
-                    <span>Symfony2 MediaBundle</span>
-                </a>
-            </h2>
+      </div>
+
+
+      <div id="modal-bundles" class="modal bottom-sheet bottom-sheet-custom">
+        <div class="modal-content">
+            <div class="row custom-row">
+                <div class="col l6 m6 s12 custom-col">
+                    <a href="http://mykees.github.io/MkMediaBundle/" class="media-bundle-link center">
+                        <div class="custom-row row">
+                            <div class="col l6 custom-col right-align wrapper-img pr55">
+                                <img src="assets/images/mediabundle-logo.png" alt="">
+                            </div>
+                            <div class="col l6 custom-col left-align wrapper-text">
+                                <h5>MkMediaBundle</h5>
+                                <p>A bundle media system for Symfony2</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col l6 m6 s12 custom-col">
+                    <a href="http://mykees.github.io/MkCommentBundle/" class="comment-bundle-link center">
+                        <div class="custom-row row">
+                            <div class="col l6 custom-col right-align wrapper-text pr55">
+                                <h5>MkCommentBundle</h5>
+                                <p>A bundle comment system for Symfony2</p>
+                            </div>
+                            <div class="col l6 custom-col left-align wrapper-img">
+                                <img src="assets/images/commentbundle-logo.png" alt="">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
+      </div>
 
-    </div>
-
-</div>
-
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="assets/js/materialize.min.js"></script>
+        <script src="assets/js/highlight.pack.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script>
+            $(".button-collapse").sideNav();
+            $('.modal-trigger').leanModal();
+        </script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </body>
 </html>
