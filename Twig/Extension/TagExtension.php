@@ -14,7 +14,7 @@ class TagExtension extends \Twig_Extension {
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('javascript', [$this, 'init'], [
+            new \Twig_SimpleFunction('mk_tag_javascript', [$this, 'init'], [
                 'is_safe'=>array('html'),
                 'needs_environment'=>true
             ])
